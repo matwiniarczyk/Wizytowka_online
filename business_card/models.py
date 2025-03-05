@@ -21,3 +21,12 @@ class Clients(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     image = models.ImageField(upload_to='clients/', blank=True, null=True)
+
+
+class ContactInfo(models.Model):
+    name = models.CharField(max_length=20)
+    surname = models.CharField(max_length=20)
+    email = models.EmailField()
+    subject = models.CharField(max_length=30)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
