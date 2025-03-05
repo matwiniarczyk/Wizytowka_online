@@ -24,8 +24,7 @@ class Clients(models.Model):
 
 
 class ContactInfo(models.Model):
-    name = models.CharField(max_length=20)
-    surname = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
     email = models.EmailField()
     subject = models.CharField(max_length=30)
     message = models.TextField()
