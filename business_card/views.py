@@ -3,6 +3,7 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 
 from business_card.forms import ContactMessageForm
+from business_card.models import MainInfoAbout
 from wizytowka_config import settings
 
 
@@ -10,6 +11,8 @@ from wizytowka_config import settings
 
 def home_view(request):
     form = ContactMessageForm(request.POST)
+    ola_info = MainInfoAbout.objects.first()
+    image_url = ola_info.image.url if ola_info and ola_info.image else None
 
     if request.method == "POST":
         form = ContactMessageForm(request.POST)
@@ -34,8 +37,15 @@ def home_view(request):
 
             return redirect("success")
 
-    return render(request, 'base.html', {'form': form})
+    return render(request, 'base.html', {
+        'form': form,
+        'ola_info': ola_info,
+        'image_url': image_url
+    })
 
 
 def success_view(request):
     return render(request, 'success.html')
+
+
+print(settings.MEDIA_ROOT)

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +11,16 @@
 <body>
 <header>
     <p>WITAJ UŻYTKOWNIKU</p>
+    <p>Imię: {{ola_info.name}}</p>
+    <p>Nazwisko: {{ola_info.surname}}</p>
+    <p>Stanowisko: {{ola_info.job_title}}</p>
+    <p>Kontakt: {{ola_info.phone_number}} {{ola_info.email}}</p>
+    <p>Adres biura: {{ola_info.office_adress}}</p>
+    {% if image_url %}
+        <img src="{{ image_url }}" alt="Zdjęcie profilowe" width="1000px">
+    {% else %}
+        <p>Brak zdjęcia</p>
+    {% endif %}
 </header>
 <main>
     <form method="post">

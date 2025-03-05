@@ -25,4 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.home_view, name="home"),
     path('email_sent/', views.success_view, name="success"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:  # ⬅️ To jest kluczowe!
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
