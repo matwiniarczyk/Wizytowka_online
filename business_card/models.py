@@ -24,8 +24,8 @@ class Clients(models.Model):
 
 
 class ContactInfo(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-    subject = models.CharField(max_length=30)
-    message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField(max_length=50, blank=True)
+    email = models.EmailField(blank=True)
+    subject = models.CharField(max_length=30, blank=True)
+    message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)

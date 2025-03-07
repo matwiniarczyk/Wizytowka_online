@@ -10,24 +10,62 @@
 </head>
 <body>
 <header>
-    <p>WITAJ UŻYTKOWNIKU</p>
-    <p>Imię: {{ola_info.name}}</p>
-    <p>Nazwisko: {{ola_info.surname}}</p>
-    <p>Stanowisko: {{ola_info.job_title}}</p>
-    <p>Kontakt: {{ola_info.phone_number}} {{ola_info.email}}</p>
-    <p>Adres biura: {{ola_info.office_adress}}</p>
     {% if image_url %}
-        <img src="{{ image_url }}" alt="Zdjęcie profilowe" width="1000px">
+    <img src="{{ image_url }}" alt="Zdjęcie profilowe" width="1000px">
     {% else %}
-        <p>Brak zdjęcia</p>
+    <p>Brak zdjęcia</p>
     {% endif %}
+    <h3> {{ ola_info.name }} {{ ola_info.surname }} </h3>
+    <p> {{ ola_info.job_title }} </p>
 </header>
 <main>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Wyślij</button>
-    </form>
+    <div>
+        <p> {{ ola_info.phone_number }} </p>
+        <p> {{ ola_info.email }} </p>
+        <p> {{ ola_info.office_adress }} </p>
+    </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th colspan="3">KAFELKI DO NAJECHANIA KURSOREM</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for offer in offers %}
+            {% if forloop.first or forloop.counter0|divisibleby:'3' %}
+            <tr>
+                {% endif %}
+                <td>{{ offer.name }}</td>
+                {% if forloop.counter|divisibleby:'3' and forloop.counter0 != 0 %}
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            {{ form.non_field_errors }} {# POKAZUJE GLOBALNE BŁĘDY #}
+
+            {% for field in form %}
+            <div>
+                {{ field.label_tag }} <br>
+                {{ field }}
+                {% if field.errors and request.method == "POST" %}
+                    {{ field.errors.0 }}
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit">Wyślij</button>
+        </form>
+    </div>
 </main>
+<footer>
+    STOPKA
+</footer>
 </body>
 </html>
