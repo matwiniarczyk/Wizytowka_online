@@ -6,11 +6,17 @@ from .models import ContactInfo
 
 class ContactMessageForm(forms.ModelForm):
     email = forms.EmailField(error_messages={'invalid': "Podaj poprawny adres e-mail"})
-    # MUSZĘ RĘCZNIE ZMIENIĆ
+    # MUSZĘ RĘCZNIE ZMIENIĆ ERROR MESSAGE NA POLSKU
 
     class Meta:
         model = ContactInfo
         fields = ['name', 'email', 'subject', 'message']
+        labels = {
+            'name': 'Imię',
+            'email': 'E-mail',
+            'subject': 'Temat',
+            'message': 'Wiadomość',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
