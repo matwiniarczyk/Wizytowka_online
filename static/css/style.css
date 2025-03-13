@@ -1,0 +1,137 @@
+body {
+    background-color: black;
+    padding-top: 80px;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* HEADER - ZDJĘCIE I TYTUŁ */
+
+#profilowe {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px #FF7900 solid;
+}
+
+#job_title {
+    border: 2px solid #FF7900;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container h3 {
+    font-size: 25px;
+}
+
+.header-container p {
+    margin: 0;
+    font-size: 20px;
+}
+
+/* MAIN - INFO, USŁUGI I FORMULARZ */
+
+.main-container {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+    font-size: 20px;
+}
+
+i {
+    color: #FF7900;
+    font-size: 22px;
+    padding-right: 10px;
+}
+
+/* ------------------------------------ KAFELKI -------------------------------------- */
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 800px;
+}
+
+.card {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    transform: rotateY(0deg);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d; /* element i jego dzieci wiedzą że jest 3D */
+    transform-origin: center; /* obrót względem środka */
+    transition: transform 0.7s ease;
+}
+
+/*
+POSITION RELATIVE - TRAKTUJEMY ELEMENT NIEZALEŻNIE OD STRONY
+TJ. JAK ON SIĘ PRZESUWA TO RESZTA STRONY MA GO W DUPIE
+POSITION ABSOLUTE - TRAKTUJEMY ELEMENT JAKBY GO NIE BYŁO
+ABSOLUTE USUWA DANY ELEMENT Z UKŁADU STRONY I RESZTA STRONY MOŻE WEJŚĆ NA JEGO MIEJSCE
+ */
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box; /* padding nie rozszerza kafelka */
+}
+
+.card-front {
+    background-color: #FF7900;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.card-back {
+    background-color: #C85C00;
+    transform: rotateY(180deg);
+    font-size: 12px;
+    padding: 10px;
+}
+
+/* ------------------------------------------------------------------------------------- */
+
+ .form {
+
+ }

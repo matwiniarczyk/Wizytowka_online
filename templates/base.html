@@ -7,65 +7,85 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aleksandra Winiarczyk</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-<header>
-    {% if image_url %}
-    <img src="{{ image_url }}" alt="Zdjęcie profilowe" width="1000px">
-    {% else %}
-    <p>Brak zdjęcia</p>
-    {% endif %}
-    <h3> {{ ola_info.name }} {{ ola_info.surname }} </h3>
-    <p> {{ ola_info.job_title }} </p>
-</header>
-<main>
-    <div>
-        <p> {{ ola_info.phone_number }} </p>
-        <p> {{ ola_info.email }} </p>
-        <p> {{ ola_info.office_adress }} </p>
-    </div>
-    <div>
-        <table>
-            <thead>
-            <tr>
-                <th colspan="3">KAFELKI DO NAJECHANIA KURSOREM</th>
-            </tr>
-            </thead>
-            <tbody>
+    <header class="header-container">
+        {% if image_url %}
+        <img src="{{ image_url }}" alt="Zdjęcie profilowe" id="profilowe">
+        {% else %}
+        <p>Brak zdjęcia</p>
+        {% endif %}
+        <div>
+            <h3> {{ ola_info.name }} {{ ola_info.surname }} </h3>
+            <p id="job_title"> REGIONALNY DORADCA BIZNESOWY ORANGE </p>
+        </div>
+    </header>
+    <main class="main-container">
+        <div class="contact-info">
+            <p><i class="fa-solid fa-phone"></i> {{ ola_info.phone_number }} </p>
+            <p><i class="fa-solid fa-envelope"></i> {{ ola_info.email }} </p>
+            <p><i class="fa-solid fa-location-dot"></i> {{ ola_info.office_adress }} </p>
+        </div>
+
+<!--        <div class="table">-->
+<!--            <table>-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th colspan="3">KAFELKI DO NAJECHANIA KURSOREM</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                {% for offer in offers %}-->
+<!--                {% if forloop.first or forloop.counter0|divisibleby:'3' %}-->
+<!--                <tr>-->
+<!--                    {% endif %}-->
+<!--                    <td>{{ offer.name }}</td>-->
+<!--                    {% if forloop.counter|divisibleby:'3' and forloop.counter0 != 0 %}-->
+<!--                </tr>-->
+<!--                {% endif %}-->
+<!--                {% endfor %}-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+
+        <div class="cards-container">
             {% for offer in offers %}
-            {% if forloop.first or forloop.counter0|divisibleby:'3' %}
-            <tr>
-                {% endif %}
-                <td>{{ offer.name }}</td>
-                {% if forloop.counter|divisibleby:'3' and forloop.counter0 != 0 %}
-            </tr>
-            {% endif %}
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div>
-        <form method="post" novalidate>
-            {% csrf_token %}
-
-            {{ form.non_field_errors }} {# POKAZUJE GLOBALNE BŁĘDY #}
-
-            {% for field in form %}
-            <div>
-                {{ field.label_tag }} <br>
-                {{ field }}
-                {% if field.errors and request.method == "POST" %}
-                    {{ field.errors.0 }}
-                {% endif %}
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h3>{{ offer.name }}</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>{{ offer.description }}</p>
+                    </div>
+                </div>
             </div>
             {% endfor %}
+        </div>
+        <div class="form">
+            <form method="post" novalidate>
+                {% csrf_token %}
 
-            <button type="submit">Wyślij</button>
-        </form>
-    </div>
-</main>
-<footer>
-    STOPKA
-</footer>
+                {{ form.non_field_errors }} {# POKAZUJE GLOBALNE BŁĘDY #}
+
+                {% for field in form %}
+                <div>
+                    {{ field.label_tag }} <br>
+                    {{ field }}
+                    {% if field.errors and request.method == "POST" %}
+                        {{ field.errors.0 }}
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <button type="submit">Wyślij</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer-container">
+        STOPKA
+    </footer>
 </body>
 </html>
