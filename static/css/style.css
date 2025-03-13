@@ -1,7 +1,7 @@
 body {
-    background-color: black;
+    background-color: #141313;
     padding-top: 80px;
-    color: white;
+    color: #f5f0f0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -58,14 +58,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 40px;
     font-size: 20px;
 }
 
 i {
     color: #FF7900;
     font-size: 22px;
-    padding-right: 10px;
+    padding-right: 15px;
 }
 
 /* ------------------------------------ KAFELKI -------------------------------------- */
@@ -128,10 +127,50 @@ ABSOLUTE USUWA DANY ELEMENT Z UKŁADU STRONY I RESZTA STRONY MOŻE WEJŚĆ NA JE
     transform: rotateY(180deg);
     font-size: 12px;
     padding: 10px;
+    color: white;
 }
 
 /* ------------------------------------------------------------------------------------- */
 
- .form {
+form {
+    min-width: 700px;
+    background-color: #141313;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
 
- }
+input, textarea {
+    width: 700px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input:focus, textarea:focus {
+    border-color: #FF7900;
+    outline: none;
+}
+
+.form_field_labels {
+    display: block;
+    font-weight: bold;
+    margin: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #FF7900;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #C85C00;
+}
