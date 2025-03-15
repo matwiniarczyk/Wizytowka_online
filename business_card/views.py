@@ -16,9 +16,14 @@ def home_view(request):
     image_url = ola_info.image.url if ola_info and ola_info.image else None
     offers = ServiceOffer.objects.all()
 
+    context = {
+        'form': form,
+        'ola_info': ola_info,
+        'image_url': image_url,
+        'offers': offers,
+    }
 
     if request.method == "POST":
-        form = ContactMessageForm(request.POST)
         if form.is_valid():
             form.save()
 
@@ -37,23 +42,9 @@ def home_view(request):
             )
 
             email.send(fail_silently=False)
-
             return redirect("success")
-        else:
-            # UŻYWAM ZNOWU RENDER ZAMIAST REDIRECT, ŻEBY NIE STRACIĆ DANYCH W FORMULARZU
-            return render(request, 'base.html', {
-                'form': form,
-                'ola_info': ola_info,
-                'image_url': image_url,
-                'offers': offers,
-            })
 
-    return render(request, 'base.html', {
-        'form': form,
-        'ola_info': ola_info,
-        'image_url': image_url,
-        'offers': offers,
-    })
+    return render(request, 'base.html', context)
 
 
 def success_view(request):

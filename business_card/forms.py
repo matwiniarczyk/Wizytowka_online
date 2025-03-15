@@ -31,3 +31,5 @@ class ContactMessageForm(forms.ModelForm):
         if not re.match(email_regex_pattern, email):
             raise forms.ValidationError('Podaj poprawny adres e-mail!')
         return email
+
+
