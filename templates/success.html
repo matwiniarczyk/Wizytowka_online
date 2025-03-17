@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,14 +6,29 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Mail wysłany!</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <header>
-        Email został wysłany!
-    </header>
-    <main>
-        <a href="{% url 'home' %}">Powrót na stronę główną</a>
-    </main>
+<header class="header-container">
+    <p id="footer-info">Dziękuję za wiadomość! 📩<br>
+        <br>
+        Cieszę się, że się ze mną skontaktowałeś/aś. Odpowiem najszybciej, jak to możliwe. <br>
+        Jeśli sprawa jest pilna, możesz zadzwonić pod mój numer telefonu.<br>
+        <br>
+        Pozdrawiam,<br>
+        Aleksandra Winiarczyk<br>
+        Regionalny Doradca Biznesowy Orange
+    </p>
+</header>
+<div id="success_div">
+    <a href="{% url 'home' %}">
+        <button id="back_to_main"> Powrót na stronę główną</button>
+    </a>
+</div>
+
+{% include 'footer.html' %}
+
 </body>
 </html>

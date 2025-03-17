@@ -65,13 +65,11 @@
         {% endfor %}
     </div>
     <div class="form-div">
-        {% for field in form %}
-            {% if field.errors and request.method == "POST" %}
-                <div class="form_errors">
-                    <p> {{ field.errors.0 }} </p>
-                </div>
-            {% endif %}
-        {% endfor %}
+        {% if first_error and request.method == "POST" %}
+            <div class="form_errors">
+                <p> {{ first_error }} </p>
+            </div>
+        {% endif %}
 
         <form method="post" novalidate>
             {% csrf_token %}

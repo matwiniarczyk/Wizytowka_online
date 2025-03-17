@@ -34,11 +34,11 @@ class Clients(models.Model):
         verbose_name_plural = "Klienci"
 
 class ContactInfo(models.Model):
-    name = models.CharField(max_length=50, blank=True, verbose_name="Imię")
-    email = models.EmailField(blank=True, verbose_name="E-mail")
-    subject = models.CharField(max_length=30, blank=True, verbose_name="Temat")
-    message = models.TextField(blank=True, verbose_name="Wiadomość")
-    created_at = models.DateTimeField(auto_now_add=True, blank=True, verbose_name="Data wysłania")
+    name = models.CharField(max_length=50, blank=False, verbose_name="Imię")
+    email = models.EmailField(blank=False, verbose_name="E-mail")
+    subject = models.CharField(max_length=30, blank=False, verbose_name="Temat")
+    message = models.TextField(blank=False, verbose_name="Wiadomość")
+    created_at = models.DateTimeField(auto_now_add=True, blank=False, verbose_name="Data wysłania")
 
     class Meta:
         verbose_name = "Wiadomość"

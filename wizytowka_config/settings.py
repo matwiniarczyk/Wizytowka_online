@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9!ei^-e$p352qm2n38_gab39(5f(n3fbxa#(9y((a++=hhk6wm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["matwiniarczyk.pythonanywhere.com", "127.0.0.1"]
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,12 +78,12 @@ WSGI_APPLICATION = 'wizytowka_config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wizytowka_db',
-        'USER': 'mati',
-        'PASSWORD': 'Mateuszz22!',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('MYSQL_NAME'),
+        'USER': os.getenv('MYSQL_USER'),
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': os.getenv('MYSQL_HOST'),
+        'PORT': os.getenv('MYSQL_PORT')
     }
 }
 
@@ -119,7 +120,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']  # staticfiles_dirs działa lokalnie, ale nie w produkcji
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # to działa w produkcji i zbierze wszystkie pliki statyczne w jednym miejscu
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Optymalizuje i kompresuje pliki statyczne (CSS, JS) w produkcji
+# Dodaje unikalne hashe do nazw plików, żeby uniknąć problemów z cache
+# Dzięki temu przeglądarka zawsze pobiera najnowszą wersję plików
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -136,4 +142,3 @@ EMAIL_PORT = 587  # DLA BEZPIECZNEGO POŁĄCZENIA TLS
 EMAIL_USE_TLS = True  # TLS
 EMAIL_HOST_USER = 'matiwiniar@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-

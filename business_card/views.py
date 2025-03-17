@@ -10,7 +10,7 @@ from wizytowka_config import settings
 # Create your views here.
 
 def home_view(request):
-    form = ContactMessageForm(request.POST or None) # OR NONE ZAPOBIEGA WALIDACJI PRZY GET
+    form = ContactMessageForm(request.POST or None)  # OR NONE ZAPOBIEGA WALIDACJI PRZY GET
 
     ola_info = MainInfoAbout.objects.first()
     image_url = ola_info.image.url if ola_info and ola_info.image else None
@@ -43,6 +43,16 @@ def home_view(request):
 
             email.send(fail_silently=False)
             return redirect("success")
+
+        first_error = list(form.errors.values())[0][0] if form.errors else None
+        # FORM ERRORS TO SŁOWNIK GDZIE KLUCZE TO NAZWY PÓL A WARTOŚCI TO LISTY BŁĘDÓW NP.
+        # {
+        #     'name': ["To pole jest wymagane!"],
+        #     'email': ["Podaj poprawny adres e-mail!", "E-mail jest wymagany!"],
+        #     'message': ["Wiadomość musi mieć co najmniej 10 znaków."]
+        # }
+
+        context['first_error'] = first_error
 
     return render(request, 'base.html', context)
 
