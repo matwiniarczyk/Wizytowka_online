@@ -19,14 +19,14 @@
     {% endif %}
     <div>
         <h3> {{ ola_info.name }} {{ ola_info.surname }} </h3>
-        <p id="job_title"> REGIONALNY DORADCA BIZNESOWY ORANGE </p>
+        <p id="job_title"> {{ ola_info.job_title }} </p>
     </div>
 </header>
 <main class="main-container">
     <div class="contact-info">
         <p><i class="fa-solid fa-phone"></i> {{ ola_info.phone_number }} </p>
         <p><i class="fa-solid fa-envelope"></i> {{ ola_info.email }} </p>
-        <p><i class="fa-solid fa-location-dot" style="padding-left: 4px"></i> {{ ola_info.office_adress }} </p>
+        <p><i class="fa-solid fa-location-dot" style="padding-left: 4px"></i> {{ ola_info.office_adress }} (biuro)</p>
     </div>
 
     <!--        <div class="table">-->
