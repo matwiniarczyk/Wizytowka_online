@@ -10,3 +10,8 @@
 .venv
 
 .myenv
+
+static/
+
+node_modules/
+*.js.map
