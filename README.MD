@@ -18,3 +18,4 @@ Projekt realizowany jako część mojej nauki programowania. Uczę się budować
 ## ⚙️ Status
 Projekt w trakcie rozwoju — planuję dopracować wersję mobilną. W przyszłości można rozwinąć stronę o dodatkowe funkcje.
 
+*Design i layout moich aplikacji odbiega od tych profesjonalnych, jednak proces frontendowy nie jest dla mnie tak istotny w nauce.
